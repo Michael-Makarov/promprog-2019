@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопросы</title>
+</head>
+<body>
+<h1>Вопросы</h1>
+{% if list %}
+    <ul>
+    {% for question in list %}
+        <li>{{ question.text }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Вопросов пока нет</p>
+{% endif %}
+
+<h1>Новый вопрос</h1>
+<form action="{% url 'questions:add' %}" method="post">
+{% csrf_token %}
+    <input type="text" name="text" id="text">
+    <label for="text">Текст вопроса</label><br>
+<input type="submit" value="Добавить">
+</form>
+
+</body>
+</html>
