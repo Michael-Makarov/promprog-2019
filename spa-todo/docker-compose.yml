@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  web:
+    build: ./spa-todo
+    ports:
+      - "8000:80"
