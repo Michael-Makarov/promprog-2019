@@ -1,0 +1,20 @@
+version: '3'
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        hostname: numbers
+        container_name: numbers_queue
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        volumes:
+            - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    sender:
+        build: ./sender
+        depends_on:
+            - rabbitmq
+    getter:
+        build: ./getter
+        depends_on:
+            - rabbitmq
+    
